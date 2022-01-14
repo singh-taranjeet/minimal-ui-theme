@@ -1,14 +1,13 @@
 @use "../../styles/constants.scss" as constants;
 @use "../../styles/functions.scss" as functions;
 
-.mut-button {
+button,a.mut-button {
   padding: functions.rem(5) functions.rem(15);
   font: inherit;
   text-transform: uppercase;
   white-space: nowrap;
   position: relative;
   box-sizing: border-box;
-  align-items: center;
   vertical-align: middle;
   margin: 0;
   outline: 0;
@@ -20,9 +19,8 @@
   line-height: 1.5;
   font-size: 1rem;
   height: 2.5em;
-  position: relative;
   white-space: nowrap;
-  
+
   &.mut-outlined {
     padding: functions.rem(4) functions.rem(16),
   }
