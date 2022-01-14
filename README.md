@@ -15,12 +15,11 @@ npm install --save @minimal_ui/theme
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from '@minimal_ui/theme'
-import '@minimal_ui/theme/dist/index.css'
+import {Button} from '@minimal_ui/theme';
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Button>Example button</Button>
   }
 }
 ```
