@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import  './button.scss';
 import {Ripple} from '@minimal_ui/react-ripple';
 import {ColorType, VariantType} from "../../utils/interface";
-import {createRipple, getConstant, getId, lightenDarkenColor, mutClass} from '../../utils/methods';
+import {getConstant, getId, lightenDarkenColor, mutClass} from '../../utils/methods';
 import {Root} from '../../styleEngine/components/Root';
 import { primary__color, secondary__color, white__color } from '../../utils/constants';
 import { ButtonParamType } from './interface';
@@ -73,12 +73,10 @@ export function Button(props: ButtonParamType){
 
     function onClick(e: any) {
         console.log("clicked on ripple touch");
-        createRipple(id, e);
     }
 
     function onClickButton(e: any) {
         console.log("clicked on button");
-        createRipple(id, e);
         // default on click
         if(props.onClick) {
             props.onClick(e);

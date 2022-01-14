@@ -1,6 +1,6 @@
 {
   "name": "@minimal_ui/theme",
-  "version": "1.0.0",
+  "version": "1.0.72",
   "description": "Minimal UI Theme",
   "author": "singh-taranjeet",
   "license": "MIT",
@@ -14,10 +14,8 @@
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c --watch",
-    "pub": "yarn install && npm version patch && git add . && git commit -m \"Updates\" && npm run build && npm publish --access=public",
-    "prepare": "run-s build",
+    "pub": "npm version patch && npm run build && npm publish --access=public",
     "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
@@ -54,7 +52,7 @@
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
-    "postcss": "8.1.0",
+    "postcss": "^8.4.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -71,6 +69,6 @@
     "dist"
   ],
   "dependencies": {
-    "@minimal_ui/react-ripple": "^1.0.8"
+    "@minimal_ui/react-ripple": "^1.0.10"
   }
 }

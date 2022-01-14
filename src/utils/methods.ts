@@ -219,26 +219,25 @@ export function mutClass(name: string) {
   return `${ROOT_CLASS_NAME}-${name}`;
 }
 
+// export function createRipple(id: string , e: any) {
 
-export function createRipple(id: string , e: any) {
-
-  const element: any = getDOMElement(id);
-  const parentNode: any = element?.parentNode;
+//   const element: any = getDOMElement(id);
+//   const parentNode: any = element?.parentNode;
   
-  if(element && parentNode) {
-    if(element.getElementsByClassName(mutClass('ripple')).length > 0) {
-      element.innerHTML = "";
-    }
+//   if(element && parentNode) {
+//     if(element.getElementsByClassName(mutClass('ripple')).length > 0) {
+//       element.innerHTML = "";
+//     }
     
-    const circle = document.createElement('div');
-    element.appendChild(circle);
+//     const circle = document.createElement('div');
+//     element.appendChild(circle);
     
-    const d = Math.max(parentNode.clientWidth, parentNode.clientHeight);
-    circle.style.width = circle.style.height = d + 'px';
+//     const d = Math.max(parentNode.clientWidth, parentNode.clientHeight);
+//     circle.style.width = circle.style.height = d + 'px';
     
-    circle.style.left = e.clientX - parentNode.offsetLeft - d / 2 + 'px';
-    circle.style.top = e.clientY - parentNode.offsetTop - d / 2 + 'px';
-    circle.classList.add(mutClass('ripple'));
-  }
+//     circle.style.left = e.clientX - parentNode.offsetLeft - d / 2 + 'px';
+//     circle.style.top = e.clientY - parentNode.offsetTop - d / 2 + 'px';
+//     circle.classList.add(mutClass('ripple'));
+//   }
 
-}
+// }

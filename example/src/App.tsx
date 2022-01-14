@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Button, Select, ListItem } from '@minimal_ui/theme';
+import { Button, Select, ListItem, VariantType } from '@minimal_ui/theme';
 
 const App = () => {
   return <div>
-    <Button>
+    <Button variant={VariantType.outlined}>
     Hello
   </Button>
 
