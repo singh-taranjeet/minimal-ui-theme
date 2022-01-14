@@ -69,6 +69,6 @@
     "dist"
   ],
   "dependencies": {
-    "@minimal_ui/react-ripple": "^1.0.10"
+    "@minimal_ui/react-ripple": "^1.0.11"
   }
 }
