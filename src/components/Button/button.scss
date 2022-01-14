@@ -1,0 +1,15 @@
+@use "../../styles/constants.scss" as constants;
+@use "../../styles/functions.scss" as functions;
+
+.m-u-t-button {
+  border: none;
+  cursor: pointer;
+  padding: functions.rem(5) functions.rem(15);
+  font: inherit;
+  text-decoration: none;
+  user-select: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+  // overflow: hidden;
+}
