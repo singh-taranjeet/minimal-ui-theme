@@ -1,0 +1,13 @@
+@use "../../../styles/constants.scss" as constants;
+@use "../../../styles/functions.scss" as functions;
+@use "../../../styles/colors.scss" as color;
+
+.m-u-t-list-item {
+    padding: functions.rem(16) functions.rem(6);
+    display: block;
+    text-align: left;
+    &:hover {
+        background: color.color(hover);
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,86 @@
+@use "../../styles/constants.scss" as constants;
+@use "../../styles/functions.scss" as functions;
+@use "../../styles/colors.scss" as colors;
+
+$border-radius: constants.constants(border_radius);
+
+.m-u-t-input-wrapper {
+    position: relative;
+    .m-u-t-label {
+        visibility: hidden;
+        font-size: 0.75em;
+        position: absolute;
+        padding: 0 functions.rem(5);
+        left: functions.rem(10);
+        width: fit-content;
+        background-color: colors.color(white);
+    }
+    .m-u-t-input {
+        font: inherit;
+        outline: 0;
+        height: 1.4375em;
+        box-sizing: content-box;
+        margin: 0;
+        border: 0;
+        background: transparent;
+    }
+    &.outlined {
+        background: none;
+        border-radius: $border-radius;
+    }
+    &.filled {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        .m-u-t-label {
+            background-color: transparent;
+            top: functions.rem(5);
+        }
+        .m-u-t-input {
+            padding: functions.rem(16.5) functions.rem(14);
+        }
+    }
+    &.m-u-t-show-lable {
+        .m-u-t-label {
+            visibility:visible;
+        }
+        .m-u-t-input {
+            outline: 0;
+        }
+        
+    }
+    &.outlined.m-u-t-show-lable {
+        .m-u-t-label {
+            top: functions.rem(-8);
+        }
+    }
+    &.filled.m-u-t-show-lable {
+        .m-u-t-input {
+            padding-top: functions.rem(22);
+            padding-bottom: functions.rem(10);
+        }
+    }
+    &.standard {
+        .m-u-t-label {
+            left: 0;
+            padding: 0;
+        }
+        .m-u-t-input {
+            padding-left: 0;
+            border-radius: 0;
+            background: none;
+        }
+    }
+    &.standard.m-u-t-show-lable {
+        .m-u-t-input {
+            padding-top: functions.rem(22);
+            padding-bottom: functions.rem(10);
+        }
+    }
+
+    .m-u-t-input-icon {
+        padding: 0 functions.rem(5);
+    }
+
+}

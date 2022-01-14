@@ -1,0 +1,37 @@
+@use "../../styles/constants.scss" as constants;
+@use "../../styles/functions.scss" as functions;
+@use "../../styles/colors.scss" as colors;
+
+
+.m-u-t-select-field {
+  position: relative;
+  width: fit-content;
+  min-width: functions.rem(200);
+
+  .m-u-t-no-search {
+    border: 1px solid colors.color(light_gray);
+    min-height: functions.rem(23);
+    font: inherit;
+    position: relative;
+    .m-u-t-icon {
+      float: right;
+    }
+  }
+
+  .m-u-t-dropdown-content {
+    position: absolute;
+    background: colors.color(white);
+    z-index: 2;
+    &.close {
+      display: none;
+    }
+    &.open {
+      display: block;
+    }
+    width: 100%;
+    box-shadow: constants.constants(box_shadow);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}

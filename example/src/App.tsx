@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { ExampleComponent } from '@minimal_ui/theme'
-import '@minimal_ui/theme/dist/index.css'
+import { Button } from '@minimal_ui/theme';
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Button>
+    Hello
+  </Button>
 }
 
 export default App
