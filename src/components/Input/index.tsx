@@ -21,8 +21,8 @@ export const Input = (props: InputParamType) => {
     label = ""
   } = props;
 
-  const InitialClassname = 'm-u-t-input';
-  const InitialWrapperClassName = `m-u-t-input-wrapper`;
+  const InitialClassname = 'mut-input';
+  const InitialWrapperClassName = `mut-input-wrapper`;
 
   const [style, setStyles] = useState<any>({});
   const [elementState, setElementState] = useState<ElementState>({hover: false, focus: false});

@@ -1,15 +1,29 @@
 @use "../../styles/constants.scss" as constants;
 @use "../../styles/functions.scss" as functions;
 
-.m-u-t-button {
-  border: none;
-  cursor: pointer;
+.mut-button {
   padding: functions.rem(5) functions.rem(15);
   font: inherit;
-  text-decoration: none;
-  user-select: none;
   text-transform: uppercase;
   white-space: nowrap;
   position: relative;
-  // overflow: hidden;
+  box-sizing: border-box;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  align-items: center;
+  box-shadow: none;
+  display: inline-flex;
+  line-height: 1.5;
+  font-size: 1rem;
+  height: 2.5em;
+  position: relative;
+  white-space: nowrap;
+  
+  &.mut-outlined {
+    padding: functions.rem(4) functions.rem(16),
+  }
 }
