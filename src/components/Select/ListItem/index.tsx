@@ -125,6 +125,7 @@ export const ListItem = (props: ListItemType) => {
                 ${elementState.focus ? mutClass("focus") : ""}
                 `.trim()}
             tabIndex={0} 
+            data-m-u-t-hidden={!visible}
             data-m-u-t-id={id}
             onClick={onListItemSelect}
             onKeyDown={onListItemkeydown}

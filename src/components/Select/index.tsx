@@ -125,29 +125,39 @@ export const Select = (props: MUTSelectType) => {
 
         const div: any = getDOMElement(id);
 
+        const children: any = [];
+
+        for(let i = (div?.children?.length -1); i >= 0 ; i--) {
+            if(isHidden(div, i) === "false") {
+                children.push(div?.children[i]);
+            }
+        }
+
+        console.log("div children", children);
+
         let foundElement = -1;
 
         if(downwards) {
-            for(let i=0; i<div?.children?.length; i++) {
+            for(let i=0; i<children?.length; i++) {
                 focusOnElement(i);
             }
         }
         else {
-            for(let i = (div?.children?.length -1); i >= 0 ; i--) {
+            for(let i = (children?.length -1); i >= 0 ; i--) {
                 focusOnElement(i);
             }
         }
 
         function focusOnElement(i: number) {
 
-            const currentElement = div?.children[i].getAttribute('data-m-u-t-id');
+            const currentElement = children[i].getAttribute('data-m-u-t-id');
             const activeElement = document.activeElement;
             const aId = activeElement?.getAttribute("data-m-u-t-id") || '';
 
             if(activeElement?.localName === 'input') {
                 // focus on first child
                 setTimeout(() => {
-                    div?.children[0].focus();
+                    children[0].focus();
                 });
                 foundElement = 0;
             }
@@ -155,7 +165,7 @@ export const Select = (props: MUTSelectType) => {
             if(aId) {
                 if(i === foundElement) {
                     setTimeout(() => {
-                        div?.children[i].focus();
+                        children[i].focus();
                     });
                 }
                 else if(currentElement === aId) {
@@ -167,7 +177,7 @@ export const Select = (props: MUTSelectType) => {
                     }
                     // downwards
                     else {
-                        if((i + 1) < div?.children?.length) {
+                        if((i + 1) < children?.length) {
                             foundElement = i + 1;
                         }
                     }    
@@ -176,12 +186,20 @@ export const Select = (props: MUTSelectType) => {
             // none of the elments have focus
             else if(activeElement?.localName !== "li" || foundElement === -1) {
                 setTimeout(() => {
-                    div?.children[0].focus();
+                    children[0].focus();
                 });
                 foundElement = 0;
             }
         }
+
+        // If the element is hidden don't focus on it
+        function isHidden(div: any, i: number) {
+            // data-m-u-t-hidden
+            console.log("DIV ",div?.children[i], div?.children[i]?.getAttribute('data-m-u-t-hidden'));
+            return  div?.children[i]?.getAttribute('data-m-u-t-hidden');
+        }
     }
+
 
     // On Search Text Change
     function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
