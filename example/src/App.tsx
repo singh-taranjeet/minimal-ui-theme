@@ -11,13 +11,13 @@ const App = () => {
         <h1>Select</h1>
         <div className="flex-sb">
           <Select>
-            <ListItem value={4} label={"Four"}>FOur</ListItem>
+            <ListItem value={4} label={"Four"}>Four</ListItem>
             <ListItem value={5} label={"Five"}>Five</ListItem>
             <ListItem value={6} label={"Six"}>Six</ListItem>
           </Select>
 
           <Select searchable={true}>
-            <ListItem value={4} label={"Four"}>FOur</ListItem>
+            <ListItem value={4} label={"Four"}>Four</ListItem>
             <ListItem value={5} label={"Five"}>Five</ListItem>
             <ListItem value={6} label={"Six"}>Six</ListItem>
           </Select>

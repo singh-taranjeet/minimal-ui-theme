@@ -14,6 +14,9 @@ export const ListItem = (props: ListItemType) => {
     const [tag, setTag] = useState(optionTagName);
     const [visible, setVisible] = useState(true);
     const [elementState, setElementState] = useState({focus: false});
+    const [parentId, setParentId] = useState("");
+
+    const TextFieldDataId = 'data-m-u-t-text-field-id';
 
     function onListItemSelect() {
         if(tag === liTagName) {
@@ -44,7 +47,6 @@ export const ListItem = (props: ListItemType) => {
     function isVisible(searchText: any) {
         if(tag === liTagName) {
             if(searchText && searchText.trim() && searchText.trim()?.length) {
-                // console.log("searchText", label, label?.includes(searchText), searchText)
                 if(!label.trim().toLowerCase().includes(searchText.trim().toLowerCase())) {
                     setVisible(false);
                     return;
@@ -58,28 +60,25 @@ export const ListItem = (props: ListItemType) => {
     function setEventListenerForTextField() {
 
         let inputDiv: any = null;
-
         if(tag === liTagName) {
-            const div = getDOMElement(id);
-            const dropdownContentClassName = `${mutClass("dropdown-content")}`;
+            setTimeout(() => {
+                const div = getDOMElement(id);
+                const dropdownContentClassName = `${mutClass("dropdown-content")}`;
 
-            if(div && div?.closest) {
-                const dropDown = div?.closest(`ul.${dropdownContentClassName}`)?.getAttribute("data-m-u-t-id");
-                const searchable = div?.closest(`ul.${dropdownContentClassName}`)?.getAttribute("data-m-u-t-searchable");
-                if(dropDown && searchable === "true") {
-                    inputDiv = getDOMElement(dropDown, "data-m-u-t-text-field-id");
-                    if(inputDiv) {
-                        inputDiv.addEventListener("input", (e: any) => {
-                            isVisible(e?.target?.value || "");
-                        });
+                if(div && div?.closest) {
+                    const dropDown = div?.closest(`ul.${dropdownContentClassName}`)?.getAttribute("data-m-u-t-id");
+                    const searchable = div?.closest(`ul.${dropdownContentClassName}`)?.getAttribute("data-m-u-t-searchable");
+                    const searchText = div?.closest(`ul.${dropdownContentClassName}`)?.getAttribute("data-m-u-t-search-text");
+
+                    if(dropDown && searchable === "true") {
+                        inputDiv = getDOMElement(dropDown,TextFieldDataId);
+                        if(inputDiv) {
+                            isVisible(searchText);
+                        }
                     }
                 }
-            }
+            }, 50);
         }
-        return () => {
-            inputDiv?.removeEventListener("input", () => {}, true);
-        }
-
     }
 
     function onListItemkeydown(event: any) {
@@ -89,9 +88,29 @@ export const ListItem = (props: ListItemType) => {
         }
     }
 
+    // Add custom event for searching
     useEffect(() => {
-        return setEventListenerForTextField();
-    },[tag]);
+        // Custom event to search
+        if(parentId) {
+            document.addEventListener(`searching-${parentId}`, setEventListenerForTextField);
+            // unmount
+            return () => {
+                document.removeEventListener(`searching-${parentId}`, setEventListenerForTextField)
+            };
+        }
+    }, [parentId])
+
+    // Set the id of the parent div on init
+    useEffect(() => {
+        const div = getDOMElement(id);
+        const dropdownContentClassName = `${mutClass("dropdown-content")}`;
+        if(div && div?.closest) {
+            const dropDown: any = div?.closest(`ul.${dropdownContentClassName}`)?.getAttribute("data-m-u-t-id");
+            if(dropDown) {
+                setParentId(dropDown);
+            }
+        } 
+    }, [id]);
 
     return (
         <Root 

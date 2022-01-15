@@ -184,9 +184,10 @@ export const Select = (props: MUTSelectType) => {
     // On Search Text Change
     function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
         if(searchable) {
-            const value = e.target.value;
+            const value: any = e.target.value;
             setTextFieldValue(value);
             setSearchText(value);
+            document.dispatchEvent(new Event(`searching-${id}`));
         }
     }
 
@@ -216,11 +217,12 @@ export const Select = (props: MUTSelectType) => {
     useEffect(() => {
 
         // Custom event to select the list item
-        document.addEventListener("list-item-clicked", onSelectItem.bind(this));
+        document.addEventListener(`list-item-clicked`, onSelectItem.bind(this));
+
         return () => {
-            document.removeEventListener("list-item-clicked", onSelectItem.bind(this));
+            document.removeEventListener(`list-item-clicked`, onSelectItem.bind(this));
         }
-    }, []);
+    }, [id]);
 
     function renderContent() {
 
@@ -242,41 +244,6 @@ export const Select = (props: MUTSelectType) => {
                 >
             </TextField>
         );
-
-        // if(searchable) {
-        //     return (
-        //         <TextField
-        //             variant={variant}
-        //             legend={legend}
-        //             label={props.label}
-        //             value={textFieldValue()}
-        //             data-m-u-t-text-field-id={id}
-        //             icon={{
-        //                 position: "end",
-        //                 className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
-        //             }}
-        //             onChange={onSearchChange}
-        //             className={`${mutClass("cursor-pointer")}`}
-        //             onKeyDown={onkeyDown}
-        //             >
-        //         </TextField>
-        //     );
-
-        // }
-        // else return (
-        //     <div 
-        //         tabIndex={0}
-        //         onKeyDown={onkeyDown}
-        //         className={`${mutClass("no-search")} ${mutClass("padding")} ${mutClass("justify-sb")} ${mutClass("border-radius")}`}>
-        //         <div className={`${mutClass("center")} ${mutClass("font-size")} ${mutClass("inline-align-center")} ${mutClass("select-content")}`}>
-        //             {content ? content : (props.value ? props.value : props.label)}
-        //         </div>
-        //         <Icon
-        //             position="end"
-        //             className={`${isOpen ? mutClass("rot-180") : ""}`}
-        //         ></Icon>
-        //     </div>
-        // );
     }
 
     return (
@@ -303,7 +270,7 @@ export const Select = (props: MUTSelectType) => {
                     tabIndex={-1} id={`select-${id}`}>
                     {props.children}
                 </select>
-                
+
             </FieldSet>
             
         </div>
