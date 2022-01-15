@@ -51,11 +51,13 @@ export const Select = (props: MUTSelectType) => {
         }
         setIsOpen(true);
         setSearchText("");
+        document.dispatchEvent(new Event(`searching-${id}`));
     }
 
     function closeDropdown() {
         setIsOpen(false);
         setSearchText("");
+        document.dispatchEvent(new Event(`searching-${id}`));
         removeEventListenerToNavigateListItems();
     }
 
