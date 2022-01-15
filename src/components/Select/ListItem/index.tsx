@@ -13,16 +13,19 @@ export const ListItem = (props: ListItemType) => {
     const [id] = useState(getId());
     const [tag, setTag] = useState(optionTagName);
     const [visible, setVisible] = useState(true);
+    const [elementState, setElementState] = useState({focus: false});
 
-    function onListItemClick() {
+    function onListItemSelect() {
         if(tag === liTagName) {
             const dropdownContentClassName = `${mutClass("dropdown-content")}`;
             const div = getDOMElement(id);
+            
             if(div) {
                 div?.closest(`ul.${dropdownContentClassName}`)?.setAttribute("data-value", value);
                 div?.closest(`ul.${dropdownContentClassName}`)?.setAttribute("data-label", label);
             }
         }
+        document.dispatchEvent(new Event("list-item-clicked"));
     }
 
     useEffect(() => {
@@ -80,6 +83,13 @@ export const ListItem = (props: ListItemType) => {
 
     }
 
+    function onListItemkeydown(event: any) {
+        const keyCode = event.keyCode;
+        if(keyCode === 13) {
+            onListItemSelect();
+        }
+    }
+
     useEffect(() => {
         return setEventListenerForTextField();
     },[tag]);
@@ -89,10 +99,17 @@ export const ListItem = (props: ListItemType) => {
             tag={tag}
             data-value={value}
             data-label={label}
-            className={`${mutClass("list-item")} ${visible ? "" : mutClass('hidden')}`}
+            onBlur={() => setElementState({focus: false})}
+            onFocus={() => setElementState({focus: true})}
+            className={`
+                ${mutClass("list-item")} 
+                ${mutClass("outline-none")} ${visible ? "" : mutClass('hidden')}
+                ${elementState.focus ? mutClass("focus") : ""}
+                `.trim()}
             tabIndex={0} 
             data-m-u-t-id={id}
-            onClick={onListItemClick}
+            onClick={onListItemSelect}
+            onKeyDown={onListItemkeydown}
             role={"option"}>
             {tag === liTagName ? children : value}
         </Root>

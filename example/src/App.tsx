@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-import { Button, Select, ListItem, VariantType, TextField } from '@minimal_ui/theme';
+import { Select, ListItem, VariantType, TextField, Button, Box } from '@minimal_ui/theme';
 
 const App = () => {
   return (
@@ -11,6 +11,12 @@ const App = () => {
         <h1>Select</h1>
         <div className="flex-sb">
           <Select>
+            <ListItem value={4} label={"Four"}>FOur</ListItem>
+            <ListItem value={5} label={"Five"}>Five</ListItem>
+            <ListItem value={6} label={"Six"}>Six</ListItem>
+          </Select>
+
+          <Select searchable={true}>
             <ListItem value={4} label={"Four"}>FOur</ListItem>
             <ListItem value={5} label={"Five"}>Five</ListItem>
             <ListItem value={6} label={"Six"}>Six</ListItem>
@@ -57,6 +63,19 @@ const App = () => {
           <TextField color={"#e91e63"} variant={VariantType.filled} label="filled textfield" legend="filled textfield"></TextField>
 
           <input className="input" type="text" placeholder="Normal input" />
+
+        </div>
+
+      </div>
+
+      <div className="m-20">
+        <h1>Box</h1>
+
+        <div className="flex-sb">
+
+          <Box>
+            <h2>Box</h2>
+          </Box>
 
         </div>
 

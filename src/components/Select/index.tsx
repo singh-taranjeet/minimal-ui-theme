@@ -3,7 +3,6 @@ import { Root } from '../../styleEngine/components/Root';
 import { CoreComponentParamType, VariantType } from '../../utils/interface';
 import { getDOMElement, getId, mutClass, useOutsideClickHandler } from '../../utils/methods';
 import { FieldSet } from '../Fieldset';
-import { Icon } from '../Icon';
 import { TextField } from '../Textfield';
 import './select.scss';
 
@@ -14,7 +13,7 @@ interface MUTSelectType extends React.HTMLProps<HTMLSelectElement>, CoreComponen
 
 export const Select = (props: MUTSelectType) => {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [id] = useState(getId());
     const [content, setContent] = useState<any>("");
 
@@ -24,7 +23,7 @@ export const Select = (props: MUTSelectType) => {
         legend, 
         onChange, 
         searchable=false, 
-        variant=VariantType.standard
+        variant=VariantType.outlined
     } = props;
 
     const wrapperRef = useRef(null);
@@ -36,9 +35,11 @@ export const Select = (props: MUTSelectType) => {
         const div = getDOMElement(id);
         if(div && document && window) {
             const value = div.getAttribute("data-value");
-                setSelectValue(value);
+            setSelectValue(value);
         }
-        setIsOpen(false);
+        setTimeout(() => {
+            closeDropdown();
+        });
     }
 
     function openDropdown() {
@@ -134,9 +135,17 @@ export const Select = (props: MUTSelectType) => {
 
         function focusOnElement(i: number) {
 
-            const df = div?.children[i].getAttribute('data-m-u-t-id');
+            const currentElement = div?.children[i].getAttribute('data-m-u-t-id');
             const activeElement = document.activeElement;
             const aId = activeElement?.getAttribute("data-m-u-t-id") || '';
+
+            if(activeElement?.localName === 'input') {
+                // focus on first child
+                setTimeout(() => {
+                    div?.children[0].focus();
+                });
+                foundElement = 0;
+            }
 
             if(aId) {
                 if(i === foundElement) {
@@ -144,7 +153,7 @@ export const Select = (props: MUTSelectType) => {
                         div?.children[i].focus();
                     });
                 }
-                else if(df === aId) {
+                else if(currentElement === aId) {
                     // upwards
                     if(!downwards) {
                         if(i > 0) {
@@ -195,41 +204,69 @@ export const Select = (props: MUTSelectType) => {
         });
     }, [props.value]);
 
-    function renderContent() {
-        if(searchable) {
-            return (
-                <TextField
-                    variant={variant}
-                    legend={legend}
-                    label={props.label}
-                    value={textFieldValue()}
-                    data-m-u-t-text-field-id={id}
-                    icon={{
-                        position: "end",
-                        className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
-                    }}
-                    onChange={onSearchChange}
-                    className={`${mutClass("cursor-pointer")}`}
-                    onKeyDown={onkeyDown}
-                    >
-                </TextField>
-            );
+    useEffect(() => {
 
+        document.addEventListener("list-item-clicked", onSelectItem.bind(this));
+        return () => {
+            document.removeEventListener("list-item-clicked", onSelectItem.bind(this));
         }
-        else return (
-            <div 
-                tabIndex={0}
+    }, []);
+
+    function renderContent() {
+
+        return (
+            <TextField
+                readOnly={!searchable}
+                variant={variant}
+                legend={legend}
+                label={props.label}
+                value={textFieldValue()}
+                data-m-u-t-text-field-id={id}
+                icon={{
+                    position: "end",
+                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
+                }}
+                onChange={onSearchChange}
+                className={`${mutClass("cursor-pointer")}`}
                 onKeyDown={onkeyDown}
-                className={`${mutClass("no-search")} ${mutClass("padding")} ${mutClass("justify-sb")} ${mutClass("border-radius")}`}>
-                <div className={`${mutClass("center")} ${mutClass("font-size")} ${mutClass("inline-align-center")} ${mutClass("select-content")}`}>
-                    {content ? content : (props.value ? props.value : props.label)}
-                </div>
-                <Icon
-                    position="end"
-                    className={`${isOpen ? mutClass("rot-180") : ""}`}
-                ></Icon>
-            </div>
+                >
+            </TextField>
         );
+
+        // if(searchable) {
+        //     return (
+        //         <TextField
+        //             variant={variant}
+        //             legend={legend}
+        //             label={props.label}
+        //             value={textFieldValue()}
+        //             data-m-u-t-text-field-id={id}
+        //             icon={{
+        //                 position: "end",
+        //                 className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
+        //             }}
+        //             onChange={onSearchChange}
+        //             className={`${mutClass("cursor-pointer")}`}
+        //             onKeyDown={onkeyDown}
+        //             >
+        //         </TextField>
+        //     );
+
+        // }
+        // else return (
+        //     <div 
+        //         tabIndex={0}
+        //         onKeyDown={onkeyDown}
+        //         className={`${mutClass("no-search")} ${mutClass("padding")} ${mutClass("justify-sb")} ${mutClass("border-radius")}`}>
+        //         <div className={`${mutClass("center")} ${mutClass("font-size")} ${mutClass("inline-align-center")} ${mutClass("select-content")}`}>
+        //             {content ? content : (props.value ? props.value : props.label)}
+        //         </div>
+        //         <Icon
+        //             position="end"
+        //             className={`${isOpen ? mutClass("rot-180") : ""}`}
+        //         ></Icon>
+        //     </div>
+        // );
     }
 
     return (

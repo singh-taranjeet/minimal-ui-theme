@@ -6,7 +6,7 @@
     padding: functions.rem(16) functions.rem(6);
     display: block;
     text-align: left;
-    &:hover {
+    &.mut-focus,&:hover {
         background: color.color(hover);
         cursor: pointer;
     }
