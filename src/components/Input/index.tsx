@@ -163,10 +163,13 @@ export const Input = (props: InputParamType) => {
     }
   }
 
-  function onClickIcon() {
+  function onClickIcon(e: React.MouseEvent<HTMLDivElement>) {
     const div: any = getDOMElement(id);
     if(div) {
       div?.focus();
+      if(props?.icon?.onClick) {
+        props?.icon?.onClick(e);
+      }
     }
   }
 
@@ -241,7 +244,7 @@ export const Input = (props: InputParamType) => {
           props.icon
           ? <div className={`${mutClass("center")} ${mutClass("input-icon")}`} onClick={onClickIcon}>
               <Icon
-                {...props.icon} 
+                {...props.icon}
                 className={`${props?.icon?.className} ${mutClass("cursor-text")}`} 
               />
             </div>

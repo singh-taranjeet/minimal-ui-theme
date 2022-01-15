@@ -48,10 +48,10 @@ export const Select = (props: MUTSelectType) => {
     function openDropdown() {
         if(!isOpen) {
             addEventListenerToNavigateListItems();
+            setIsOpen(true);
+            setSearchText("");
+            document.dispatchEvent(new Event(`searching-${id}`));
         }
-        setIsOpen(true);
-        setSearchText("");
-        document.dispatchEvent(new Event(`searching-${id}`));
     }
 
     function closeDropdown() {
@@ -197,7 +197,6 @@ export const Select = (props: MUTSelectType) => {
         }
     }
 
-
     // On Search Text Change
     function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
         if(searchable) {
@@ -243,6 +242,15 @@ export const Select = (props: MUTSelectType) => {
 
     function renderContent() {
 
+        function onClickIcon() {
+            if(isOpen) {
+                closeDropdown();
+            }
+            else {
+                openDropdown();
+            }
+        }
+
         return (
             <TextField
                 readOnly={!searchable}
@@ -252,6 +260,7 @@ export const Select = (props: MUTSelectType) => {
                 value={textFieldValue}
                 data-m-u-t-text-field-id={id}
                 icon={{
+                    onClick: onClickIcon,
                     position: "end",
                     className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
                 }}

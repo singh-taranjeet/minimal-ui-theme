@@ -23,6 +23,12 @@ const App = () => {
             <ListItem value={7} label={"Seven"}>Seven</ListItem>
             <ListItem value={8} label={"Eight"}>Eight</ListItem>
             <ListItem value={9} label={"Nine"}>Nine</ListItem>
+            <ListItem value={10} label={"Ten"}>Ten</ListItem>
+            <ListItem value={18} label={"Eighteen"}>Eighteen</ListItem>
+            <ListItem value={19} label={"Nineteen"}>Nineteen</ListItem>
+            <ListItem value={17} label={"Seventeen"}>Seventeen</ListItem>
+            <ListItem value={188} label={"one hundread eight"}>one hundread eight</ListItem>
+            <ListItem value={199} label={"One hundread nine"}>One hundread nine</ListItem>
           </Select>
         </div>
       </div>

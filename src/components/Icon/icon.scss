@@ -16,7 +16,9 @@
     }
 
     &.mut-select-icon {
-        padding-right: fun.rem(11);
+        border-radius: 50%;
+        padding: fun.rem(11);
+        cursor: pointer;
     }
     
     
