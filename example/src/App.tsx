@@ -50,11 +50,13 @@ const App = () => {
 
         <div className="flex-sb">
 
-          <TextField variant={VariantType.standard} label="standard textfield" legend="standard textfield"></TextField>
+          <TextField color="#9c27b0"  variant={VariantType.standard} label="standard textfield" legend="standard textfield"></TextField>
 
-          <TextField variant={VariantType.outlined} label="outlined textfield" legend="outlined textfield"></TextField>
+          <TextField color="#039f7c" variant={VariantType.outlined} label="outlined textfield" legend="outlined textfield"></TextField>
 
-          <TextField variant={VariantType.filled} label="filled textfield" legend="filled textfield"></TextField>
+          <TextField color={"#e91e63"} variant={VariantType.filled} label="filled textfield" legend="filled textfield"></TextField>
+
+          <input className="input" type="text" placeholder="Normal input" />
 
         </div>
 

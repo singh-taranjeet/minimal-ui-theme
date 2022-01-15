@@ -8,7 +8,7 @@ export const Icon = (props: IconType) => {
     const {alt="icon", className="", src = "", position = "end"} = props;
 
     return (
-        <div className={`${mutClass("icon")} ${className} ${mutClass("center")}`}>
+        <div className={`${mutClass("icon")} ${className} ${mutClass("center")}`.trim()}>
             {
                 src && position 
                 ? <img src={src} alt={alt}></img>

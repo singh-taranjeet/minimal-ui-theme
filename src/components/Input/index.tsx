@@ -21,8 +21,8 @@ export const Input = (props: InputParamType) => {
     label = ""
   } = props;
 
-  const InitialClassname = 'mut-input';
-  const InitialWrapperClassName = `mut-input-wrapper`;
+  const InitialClassname = `${mutClass("input")} ${mutClass("inline-align-center")}`;
+  const InitialWrapperClassName = `${mutClass("input-wrapper")}`;
 
   const [style, setStyles] = useState<any>({});
   const [elementState, setElementState] = useState<ElementState>({hover: false, focus: false});
@@ -211,10 +211,10 @@ export const Input = (props: InputParamType) => {
     <Root 
       tag="div" 
       styles={style}
-      className={`${wrapperClassName} ${variant} ${mutClass("justify-sb")} ${hasValue ? mutClass("show-lable") : ""}`}>
+      className={`${wrapperClassName} ${variant} ${mutClass("justify-sb")} ${(hasValue || elementState.focus) ? mutClass("show-lable") : ""}`}>
         <Root 
           tag={'label'} 
-          className="m-u-t-label" 
+          className={mutClass("label")}
           htmlFor={id} 
           styles={{color: __color}}
           >
@@ -229,7 +229,7 @@ export const Input = (props: InputParamType) => {
           onBlur={onBlur}
           data-m-u-t-id={id}
           placeholder={elementState.focus ? props.placeholder : props.label}
-          className={`${InitialClassname} ${mutClass("padding")}`}
+          className={`${InitialClassname} ${mutClass("padding")}`.trim()}
           // unassign other props
           variant={undefined} 
           color={undefined} 
@@ -241,7 +241,7 @@ export const Input = (props: InputParamType) => {
           ? <div className={`${mutClass("center")} ${mutClass("input-icon")}`} onClick={onClickIcon}>
               <Icon
                 {...props.icon} 
-                className={`${props?.icon?.className ? props?.icon?.className : ""} ${mutClass("cursor-text")}`} 
+                className={`${props?.icon?.className} ${mutClass("cursor-text")}`} 
               />
             </div>
           : null
