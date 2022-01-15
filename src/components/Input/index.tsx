@@ -18,11 +18,12 @@ export const Input = (props: InputParamType) => {
   const {
     color = getConstant(light_gray__color, true), 
     variant = VariantType.standard, 
-    label = ""
+    label = "",
+    type="text"
   } = props;
 
-  const InitialClassname = 'mut-input';
-  const InitialWrapperClassName = `mut-input-wrapper`;
+  const InitialClassname = `${mutClass("input")} ${mutClass("inline-align-center")}`;
+  const InitialWrapperClassName = `${mutClass("input-wrapper")}`;
 
   const [style, setStyles] = useState<any>({});
   const [elementState, setElementState] = useState<ElementState>({hover: false, focus: false});
@@ -162,10 +163,13 @@ export const Input = (props: InputParamType) => {
     }
   }
 
-  function onClickIcon() {
+  function onClickIcon(e: React.MouseEvent<HTMLDivElement>) {
     const div: any = getDOMElement(id);
     if(div) {
       div?.focus();
+      if(props?.icon?.onClick) {
+        props?.icon?.onClick(e);
+      }
     }
   }
 
@@ -211,10 +215,10 @@ export const Input = (props: InputParamType) => {
     <Root 
       tag="div" 
       styles={style}
-      className={`${wrapperClassName} ${variant} ${mutClass("justify-sb")} ${hasValue ? mutClass("show-lable") : ""}`}>
+      className={`${wrapperClassName} ${variant} ${mutClass("justify-sb")} ${(hasValue || elementState.focus) ? mutClass("show-lable") : ""}`}>
         <Root 
           tag={'label'} 
-          className="m-u-t-label" 
+          className={mutClass("label")}
           htmlFor={id} 
           styles={{color: __color}}
           >
@@ -229,7 +233,7 @@ export const Input = (props: InputParamType) => {
           onBlur={onBlur}
           data-m-u-t-id={id}
           placeholder={elementState.focus ? props.placeholder : props.label}
-          className={`${InitialClassname} ${mutClass("padding")}`}
+          className={`${InitialClassname} ${mutClass("padding")}`.trim()}
           // unassign other props
           variant={undefined} 
           color={undefined} 
@@ -240,8 +244,8 @@ export const Input = (props: InputParamType) => {
           props.icon
           ? <div className={`${mutClass("center")} ${mutClass("input-icon")}`} onClick={onClickIcon}>
               <Icon
-                {...props.icon} 
-                className={`${props?.icon?.className ? props?.icon?.className : ""} ${mutClass("cursor-text")}`} 
+                {...props.icon}
+                className={`${props?.icon?.className} ${mutClass("cursor-text")}`} 
               />
             </div>
           : null

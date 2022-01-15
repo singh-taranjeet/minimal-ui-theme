@@ -3,7 +3,6 @@ import { Root } from '../../styleEngine/components/Root';
 import { CoreComponentParamType, VariantType } from '../../utils/interface';
 import { getDOMElement, getId, mutClass, useOutsideClickHandler } from '../../utils/methods';
 import { FieldSet } from '../Fieldset';
-import { Icon } from '../Icon';
 import { TextField } from '../Textfield';
 import './select.scss';
 
@@ -14,17 +13,20 @@ interface MUTSelectType extends React.HTMLProps<HTMLSelectElement>, CoreComponen
 
 export const Select = (props: MUTSelectType) => {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [id] = useState(getId());
+    // some selected value
     const [content, setContent] = useState<any>("");
-
+    // value to be shown when closed
+    const [textFieldValue, setTextFieldValue] = useState<any>("");
+    // search text
     const [searchText, setSearchText] = useState("");
     
     const { 
         legend, 
         onChange, 
         searchable=false, 
-        variant=VariantType.standard
+        variant=VariantType.outlined
     } = props;
 
     const wrapperRef = useRef(null);
@@ -36,22 +38,26 @@ export const Select = (props: MUTSelectType) => {
         const div = getDOMElement(id);
         if(div && document && window) {
             const value = div.getAttribute("data-value");
-                setSelectValue(value);
+            setSelectValue(value);
         }
-        setIsOpen(false);
+        setTimeout(() => {
+            closeDropdown();
+        });
     }
 
     function openDropdown() {
         if(!isOpen) {
             addEventListenerToNavigateListItems();
+            setIsOpen(true);
+            setSearchText("");
+            document.dispatchEvent(new Event(`searching-${id}`));
         }
-        setIsOpen(true);
-        setSearchText("");
     }
 
     function closeDropdown() {
         setIsOpen(false);
-        setSearchText("search");
+        setSearchText("");
+        document.dispatchEvent(new Event(`searching-${id}`));
         removeEventListenerToNavigateListItems();
     }
 
@@ -119,32 +125,48 @@ export const Select = (props: MUTSelectType) => {
 
         const div: any = getDOMElement(id);
 
+        const children: any = [];
+
+        for(let i = (div?.children?.length -1); i >= 0 ; i--) {
+            if(isHidden(div, i) === "false") {
+                children.push(div?.children[i]);
+            }
+        }
+
         let foundElement = -1;
 
         if(downwards) {
-            for(let i=0; i<div?.children?.length; i++) {
+            for(let i=0; i<children?.length; i++) {
                 focusOnElement(i);
             }
         }
         else {
-            for(let i = (div?.children?.length -1); i >= 0 ; i--) {
+            for(let i = (children?.length -1); i >= 0 ; i--) {
                 focusOnElement(i);
             }
         }
 
         function focusOnElement(i: number) {
 
-            const df = div?.children[i].getAttribute('data-m-u-t-id');
+            const currentElement = children[i].getAttribute('data-m-u-t-id');
             const activeElement = document.activeElement;
             const aId = activeElement?.getAttribute("data-m-u-t-id") || '';
+
+            if(activeElement?.localName === 'input') {
+                // focus on first child
+                setTimeout(() => {
+                    children[0].focus();
+                });
+                foundElement = 0;
+            }
 
             if(aId) {
                 if(i === foundElement) {
                     setTimeout(() => {
-                        div?.children[i].focus();
+                        children[i].focus();
                     });
                 }
-                else if(df === aId) {
+                else if(currentElement === aId) {
                     // upwards
                     if(!downwards) {
                         if(i > 0) {
@@ -153,7 +175,7 @@ export const Select = (props: MUTSelectType) => {
                     }
                     // downwards
                     else {
-                        if((i + 1) < div?.children?.length) {
+                        if((i + 1) < children?.length) {
                             foundElement = i + 1;
                         }
                     }    
@@ -162,30 +184,43 @@ export const Select = (props: MUTSelectType) => {
             // none of the elments have focus
             else if(activeElement?.localName !== "li" || foundElement === -1) {
                 setTimeout(() => {
-                    div?.children[0].focus();
+                    children[0].focus();
                 });
                 foundElement = 0;
             }
+        }
+
+        // If the element is hidden don't focus on it
+        function isHidden(div: any, i: number) {
+            // data-m-u-t-hidden
+            return  div?.children[i]?.getAttribute('data-m-u-t-hidden');
         }
     }
 
     // On Search Text Change
     function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-
-        const value = e.target.value;
-        setSearchText(value);
+        if(searchable) {
+            const value: any = e.target.value;
+            setTextFieldValue(value);
+            setSearchText(value);
+            document.dispatchEvent(new Event(`searching-${id}`));
+        }
     }
 
     // The viewable content of search text
-    function textFieldValue() {
-        if(isOpen) {
-            return searchText;
+    // Set the text field value when dropdown is open and closed
+    useEffect(() => {
+
+        if(isOpen && searchable) {
+            setTextFieldValue("");
+        }
+        else if(content) {
+            setTextFieldValue(content);
         }
         else {
-            return content ? content : props.value;
+            setTextFieldValue(props.value || "")
         }
-
-    }
+    }, [isOpen]);
 
     useEffect(() => {
         document.getElementById(`select-${id}`)?.addEventListener("change", (e: any) => {
@@ -195,40 +230,45 @@ export const Select = (props: MUTSelectType) => {
         });
     }, [props.value]);
 
-    function renderContent() {
-        if(searchable) {
-            return (
-                <TextField
-                    variant={variant}
-                    legend={legend}
-                    label={props.label}
-                    value={textFieldValue()}
-                    data-m-u-t-text-field-id={id}
-                    icon={{
-                        position: "end",
-                        className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
-                    }}
-                    onChange={onSearchChange}
-                    className={`${mutClass("cursor-pointer")}`}
-                    onKeyDown={onkeyDown}
-                    >
-                </TextField>
-            );
+    useEffect(() => {
 
+        // Custom event to select the list item
+        document.addEventListener(`list-item-clicked`, onSelectItem.bind(this));
+
+        return () => {
+            document.removeEventListener(`list-item-clicked`, onSelectItem.bind(this));
         }
-        else return (
-            <div 
-                tabIndex={0}
+    }, [id]);
+
+    function renderContent() {
+
+        function onClickIcon() {
+            if(isOpen) {
+                closeDropdown();
+            }
+            else {
+                openDropdown();
+            }
+        }
+
+        return (
+            <TextField
+                readOnly={!searchable}
+                variant={variant}
+                legend={legend}
+                label={props.label}
+                value={textFieldValue}
+                data-m-u-t-text-field-id={id}
+                icon={{
+                    onClick: onClickIcon,
+                    position: "end",
+                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
+                }}
+                onChange={onSearchChange}
+                className={`${mutClass("cursor-pointer")}`}
                 onKeyDown={onkeyDown}
-                className={`${mutClass("no-search")} ${mutClass("padding")} ${mutClass("justify-sb")} ${mutClass("border-radius")}`}>
-                <div className={`${mutClass("center")} ${mutClass("font-size")} ${mutClass("inline-align-center")} ${mutClass("select-content")}`}>
-                    {content ? content : (props.value ? props.value : props.label)}
-                </div>
-                <Icon
-                    position="end"
-                    className={`${isOpen ? mutClass("rot-180") : ""}`}
-                ></Icon>
-            </div>
+                >
+            </TextField>
         );
     }
 
@@ -249,12 +289,14 @@ export const Select = (props: MUTSelectType) => {
                     className={`${mutClass("border-radius")} ${mutClass("dropdown-content")} ${mutClass("user-select-none")} ${isOpen ? "open" : "close"}`}>
                     {props.children}
                 </Root>
+
                 <select 
                     {...props}
                     className={`${mutClass("hidden-select")} ${mutClass("hidden")}`} 
                     tabIndex={-1} id={`select-${id}`}>
                     {props.children}
                 </select>
+
             </FieldSet>
             
         </div>

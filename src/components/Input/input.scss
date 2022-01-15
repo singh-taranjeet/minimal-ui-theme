@@ -38,7 +38,7 @@ $border-radius: constants.constants(border_radius);
             top: functions.rem(5);
         }
         .mut-input {
-            padding: functions.rem(16.5) functions.rem(14);
+            padding: functions.rem(16.5) functions.rem(14) functions.rem(15.5) functions.rem(14);
         }
     }
     &.mut-show-lable {

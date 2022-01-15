@@ -40,11 +40,15 @@
 }
 
 .mut-cursor-pointer {
-    cursor: pointer;
+    * {
+        cursor: pointer;
+    }
 }
 
 .mut-cursor-text {
-    cursor: text;
+    * {
+        cursor: text;
+    }
 }
 
 .mut-text-dec-none {
@@ -53,6 +57,10 @@
 
 .mut-border-none {
     border: none;
+}
+
+.mut-outline-none {
+    outline: none;
 }
 
 .mut-font-size {

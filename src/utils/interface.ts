@@ -17,5 +17,6 @@ export interface IconType {
     position: "start" | "end",
     src?: string,
     alt?: string,
-    className?: string
+    className?: string,
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 }

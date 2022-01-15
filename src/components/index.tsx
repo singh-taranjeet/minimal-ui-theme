@@ -7,3 +7,6 @@ export * from './Input';
 // Select
 export * from './Select';
 export * from './Select/ListItem';
+
+// Box
+export * from './Box';
