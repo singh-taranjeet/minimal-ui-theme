@@ -21,6 +21,9 @@
       float: right;
     }
   }
+  .mut-select-content {
+    min-height: functions.rem(24);
+  }
 
   .mut-dropdown-content {
     position: absolute;

@@ -8,7 +8,7 @@ import { primary__color, secondary__color, white__color } from '../../utils/cons
 import { ButtonParamType } from './interface';
 
 const BUTTON_CLASS_NAME_INIT = `${mutClass("button")} ${mutClass("text-dec-none")} ${mutClass("border-none")}
-${mutClass("border-radius")} ${mutClass("cursor-pointer")} ${mutClass("user-select-none")}`;
+${mutClass("border-radius")} ${mutClass("inline-align-center")} ${mutClass("cursor-pointer")} ${mutClass("user-select-none")}`;
 
 export function Button(props: ButtonParamType){
 
