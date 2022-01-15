@@ -75,7 +75,7 @@ export function Button(props: ButtonParamType){
     }, [color]);
 
     return (
-        <Ripple animationDuration={800} color={"blue"}>
+        <Ripple animationDuration={800} color={"#1976d291"}>
             <Root 
                 {...props}
                 tag={props.href ? "a" : "button"} 
