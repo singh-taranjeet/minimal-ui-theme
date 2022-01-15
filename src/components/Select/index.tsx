@@ -15,8 +15,11 @@ export const Select = (props: MUTSelectType) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [id] = useState(getId());
+    // some selected value
     const [content, setContent] = useState<any>("");
-
+    // value to be shown when closed
+    const [textFieldValue, setTextFieldValue] = useState<any>("");
+    // search text
     const [searchText, setSearchText] = useState("");
     
     const { 
@@ -52,7 +55,7 @@ export const Select = (props: MUTSelectType) => {
 
     function closeDropdown() {
         setIsOpen(false);
-        setSearchText("search");
+        setSearchText("");
         removeEventListenerToNavigateListItems();
     }
 
@@ -180,21 +183,27 @@ export const Select = (props: MUTSelectType) => {
 
     // On Search Text Change
     function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-
-        const value = e.target.value;
-        setSearchText(value);
+        if(searchable) {
+            const value = e.target.value;
+            setTextFieldValue(value);
+            setSearchText(value);
+        }
     }
 
     // The viewable content of search text
-    function textFieldValue() {
-        if(isOpen) {
-            return searchText;
+    // Set the text field value when dropdown is open and closed
+    useEffect(() => {
+
+        if(isOpen && searchable) {
+            setTextFieldValue("");
+        }
+        else if(content) {
+            setTextFieldValue(content);
         }
         else {
-            return content ? content : props.value;
+            setTextFieldValue(props.value || "")
         }
-
-    }
+    }, [isOpen]);
 
     useEffect(() => {
         document.getElementById(`select-${id}`)?.addEventListener("change", (e: any) => {
@@ -206,6 +215,7 @@ export const Select = (props: MUTSelectType) => {
 
     useEffect(() => {
 
+        // Custom event to select the list item
         document.addEventListener("list-item-clicked", onSelectItem.bind(this));
         return () => {
             document.removeEventListener("list-item-clicked", onSelectItem.bind(this));
@@ -220,7 +230,7 @@ export const Select = (props: MUTSelectType) => {
                 variant={variant}
                 legend={legend}
                 label={props.label}
-                value={textFieldValue()}
+                value={textFieldValue}
                 data-m-u-t-text-field-id={id}
                 icon={{
                     position: "end",
@@ -286,12 +296,14 @@ export const Select = (props: MUTSelectType) => {
                     className={`${mutClass("border-radius")} ${mutClass("dropdown-content")} ${mutClass("user-select-none")} ${isOpen ? "open" : "close"}`}>
                     {props.children}
                 </Root>
+
                 <select 
                     {...props}
                     className={`${mutClass("hidden-select")} ${mutClass("hidden")}`} 
                     tabIndex={-1} id={`select-${id}`}>
                     {props.children}
                 </select>
+                
             </FieldSet>
             
         </div>

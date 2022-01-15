@@ -71,7 +71,6 @@ export const ListItem = (props: ListItemType) => {
                     if(inputDiv) {
                         inputDiv.addEventListener("input", (e: any) => {
                             isVisible(e?.target?.value || "");
-                            console.log("change listening", e)
                         });
                     }
                 }

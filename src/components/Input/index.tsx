@@ -18,7 +18,8 @@ export const Input = (props: InputParamType) => {
   const {
     color = getConstant(light_gray__color, true), 
     variant = VariantType.standard, 
-    label = ""
+    label = "",
+    type="text"
   } = props;
 
   const InitialClassname = `${mutClass("input")} ${mutClass("inline-align-center")}`;
