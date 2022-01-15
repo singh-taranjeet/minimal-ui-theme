@@ -133,8 +133,6 @@ export const Select = (props: MUTSelectType) => {
             }
         }
 
-        console.log("div children", children);
-
         let foundElement = -1;
 
         if(downwards) {
@@ -195,7 +193,6 @@ export const Select = (props: MUTSelectType) => {
         // If the element is hidden don't focus on it
         function isHidden(div: any, i: number) {
             // data-m-u-t-hidden
-            console.log("DIV ",div?.children[i], div?.children[i]?.getAttribute('data-m-u-t-hidden'));
             return  div?.children[i]?.getAttribute('data-m-u-t-hidden');
         }
     }
