@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createStyleSheet } from "../..";
 import { getId, isObject } from "../../../utils/methods";
 import { StyleListType } from "../../interface";
-import './root.scss';
+import '../../../styles/root.scss';
 
 export const Root = (props: any) => {
 

@@ -1,21 +1,21 @@
 @use "../../styles/functions.scss" as fun;
-.m-u-t-icon {
+.mut-icon {
     max-width: fun.rem(30);
-    .m-u-t-arrow {
+    .mut-arrow {
         width: 0;
         height: 0;
         border-left: fun.rem(5) solid transparent;
         border-right: fun.rem(5) solid transparent;
         border-top: fun.rem(5) solid #555;
     }
-    &.m-u-t-rot-180 {
-        .m-u-t-arrow {
+    &.mut-rot-180 {
+        .mut-arrow {
             transform: rotate(180deg);
             -webkit-transform: rotate(180deg);
         }
     }
 
-    &.m-u-t-select-icon {
+    &.mut-select-icon {
         padding-right: fun.rem(11);
     }
     

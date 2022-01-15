@@ -1,9 +1,9 @@
 import React from 'react';
-import { ROOT_CLASS_NAME } from '../../utils/constants';
+import { mutClass } from '../../utils/methods';
 
 export const Box = (props: React.HTMLProps<HTMLDivElement>) => {
     return (
-        <div className={`${ROOT_CLASS_NAME}-box`}>
+        <div className={`${mutClass("box")}`}>
             {props.children}
         </div>
     );

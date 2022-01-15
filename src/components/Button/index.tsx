@@ -7,7 +7,8 @@ import {Root} from '../../styleEngine/components/Root';
 import { primary__color, secondary__color, white__color } from '../../utils/constants';
 import { ButtonParamType } from './interface';
 
-const BUTTON_CLASS_NAME_INIT = `${mutClass("button")} ${mutClass("border-radius")}`;
+const BUTTON_CLASS_NAME_INIT = `${mutClass("button")} ${mutClass("text-dec-none")} ${mutClass("border-none")}
+${mutClass("border-radius")} ${mutClass("inline-align-center")} ${mutClass("cursor-pointer")} ${mutClass("user-select-none")}`;
 
 export function Button(props: ButtonParamType){
 
@@ -49,7 +50,6 @@ export function Button(props: ButtonParamType){
                 "background-color": getConstant(white__color),
                 color: __color,
                 "border": `1px solid ${lightenDarkenColor(0.5, __color, false, true)}`,
-                padding: "4px 14px",
                 ":hover": {
                     "border-color": __color,
                     "background-color": lightenDarkenColor(0.97, __color, false, true),
@@ -58,7 +58,6 @@ export function Button(props: ButtonParamType){
         }
         else if(variant === VariantType.standard) {
             setCssStyles({
-                border: 0,
                 "background-color": getConstant(white__color),
                 color: __color,
                 ":hover": {
@@ -71,57 +70,23 @@ export function Button(props: ButtonParamType){
         setStyles(styles);
     }
 
-    function onClick(e: any) {
-        console.log("clicked on ripple touch");
-    }
-
-    function onClickButton(e: any) {
-        console.log("clicked on button");
-        // default on click
-        if(props.onClick) {
-            props.onClick(e);
-        }
-    }
-
     useEffect(() => {
         setVariantClass();
     }, [color]);
 
-    if(props.href) {
-        return (
-            <Ripple>
-                <Root 
-                    {...props}
-                    tag={"a"} 
-                    className={BUTTON_CLASS_NAME_INIT}
-                    variant={undefined} 
-                    color={undefined} 
-                    href={props.href} 
-                    target={props.target}
-                    styles={style}
-                    onClick={onClick}
-                    >
-                    {children}
-                </Root>
-            </Ripple>
-        );
-    }
-    else {
-        return (
-            <Ripple>
-                <Root 
-                    {...props}
-                    className={BUTTON_CLASS_NAME_INIT}
-                    variant={undefined} 
-                    color={undefined} 
-                    tag={"button"}
-                    onClick={onClickButton}
-                    styles={style}>
-                        <div data-m-u-t-id={id} onClick={onClick} className={mutClass('ripple-touch')}></div>
-                    {children}
-                </Root>
-            </Ripple>
-            
-        )
-    }
+    return (
+        <Ripple animationDuration={800} color={"blue"}>
+            <Root 
+                {...props}
+                tag={props.href ? "a" : "button"} 
+                className={`${BUTTON_CLASS_NAME_INIT} ${mutClass(variant)}`.trim()}
+                variant={undefined} 
+                color={undefined}
+                styles={style}
+                data-m-u-t-id={id}
+                >
+                {children}
+            </Root>
+        </Ripple>
+    );
 }

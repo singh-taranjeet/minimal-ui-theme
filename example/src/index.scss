@@ -8,7 +8,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.m-20 {
+  margin: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-direction: column;
 }

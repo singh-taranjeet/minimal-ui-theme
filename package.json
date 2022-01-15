@@ -1,6 +1,6 @@
 {
   "name": "@minimal_ui/theme",
-  "version": "1.0.72",
+  "version": "1.0.74",
   "description": "Minimal UI Theme",
   "author": "singh-taranjeet",
   "license": "MIT",
@@ -69,6 +69,6 @@
     "dist"
   ],
   "dependencies": {
-    "@minimal_ui/react-ripple": "^1.0.10"
+    "@minimal_ui/react-ripple": "^1.0.12"
   }
 }

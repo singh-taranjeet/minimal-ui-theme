@@ -221,7 +221,7 @@ export const Select = (props: MUTSelectType) => {
                 tabIndex={0}
                 onKeyDown={onkeyDown}
                 className={`${mutClass("no-search")} ${mutClass("padding")} ${mutClass("justify-sb")} ${mutClass("border-radius")}`}>
-                <div className={`${mutClass("center")}`}>
+                <div className={`${mutClass("center")} ${mutClass("font-size")} ${mutClass("inline-align-center")} ${mutClass("select-content")}`}>
                     {content ? content : (props.value ? props.value : props.label)}
                 </div>
                 <Icon

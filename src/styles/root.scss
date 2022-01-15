@@ -1,0 +1,66 @@
+@use "./functions.scss" as functions;
+@use "./constants.scss" as const;
+
+.mut-hidden {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+.mut-padding {
+    padding: functions.rem(16) functions.rem(14);
+}
+
+.mut-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mut-flex {
+    display: flex;
+}
+
+// Justify Space between
+.mut-justify-sb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mut-user-select-none {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mut-border-radius {
+    border-radius: const.constants(border_radius);
+}
+
+.mut-cursor-pointer {
+    cursor: pointer;
+}
+
+.mut-cursor-text {
+    cursor: text;
+}
+
+.mut-text-dec-none {
+    text-decoration: none;
+}
+
+.mut-border-none {
+    border: none;
+}
+
+.mut-font-size {
+    font-size: 1rem;
+}
+
+.mut-inline-align-center {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+}

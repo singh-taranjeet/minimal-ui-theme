@@ -4,9 +4,9 @@
 
 $border-radius: constants.constants(border_radius);
 
-.m-u-t-input-wrapper {
+.mut-input-wrapper {
     position: relative;
-    .m-u-t-label {
+    .mut-label {
         visibility: hidden;
         font-size: 0.75em;
         position: absolute;
@@ -15,7 +15,7 @@ $border-radius: constants.constants(border_radius);
         width: fit-content;
         background-color: colors.color(white);
     }
-    .m-u-t-input {
+    .mut-input {
         font: inherit;
         outline: 0;
         height: 1.4375em;
@@ -33,53 +33,53 @@ $border-radius: constants.constants(border_radius);
         border-top-right-radius: $border-radius;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
-        .m-u-t-label {
+        .mut-label {
             background-color: transparent;
             top: functions.rem(5);
         }
-        .m-u-t-input {
+        .mut-input {
             padding: functions.rem(16.5) functions.rem(14);
         }
     }
-    &.m-u-t-show-lable {
-        .m-u-t-label {
+    &.mut-show-lable {
+        .mut-label {
             visibility:visible;
         }
-        .m-u-t-input {
+        .mut-input {
             outline: 0;
         }
         
     }
-    &.outlined.m-u-t-show-lable {
-        .m-u-t-label {
+    &.outlined.mut-show-lable {
+        .mut-label {
             top: functions.rem(-8);
         }
     }
-    &.filled.m-u-t-show-lable {
-        .m-u-t-input {
+    &.filled.mut-show-lable {
+        .mut-input {
             padding-top: functions.rem(22);
             padding-bottom: functions.rem(10);
         }
     }
     &.standard {
-        .m-u-t-label {
+        .mut-label {
             left: 0;
             padding: 0;
         }
-        .m-u-t-input {
+        .mut-input {
             padding-left: 0;
             border-radius: 0;
             background: none;
         }
     }
-    &.standard.m-u-t-show-lable {
-        .m-u-t-input {
+    &.standard.mut-show-lable {
+        .mut-input {
             padding-top: functions.rem(22);
             padding-bottom: functions.rem(10);
         }
     }
 
-    .m-u-t-input-icon {
+    .mut-input-icon {
         padding: 0 functions.rem(5);
     }
 
