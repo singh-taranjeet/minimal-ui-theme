@@ -20,6 +20,9 @@ const App = () => {
             <ListItem value={4} label={"Four"}>Four</ListItem>
             <ListItem value={5} label={"Five"}>Five</ListItem>
             <ListItem value={6} label={"Six"}>Six</ListItem>
+            <ListItem value={7} label={"Seven"}>Seven</ListItem>
+            <ListItem value={8} label={"Eight"}>Eight</ListItem>
+            <ListItem value={9} label={"Nine"}>Nine</ListItem>
           </Select>
         </div>
       </div>
