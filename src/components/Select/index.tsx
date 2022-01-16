@@ -133,6 +133,14 @@ export const Select = (props: MUTSelectType) => {
             }
         }
 
+        const children: any = [];
+
+        for(let i = (div?.children?.length -1); i >= 0 ; i--) {
+            if(isHidden(div, i) === "false") {
+                children.push(div?.children[i]);
+            }
+        }
+
         let foundElement = -1;
 
         if(downwards) {
