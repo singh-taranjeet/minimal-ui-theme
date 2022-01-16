@@ -273,17 +273,19 @@ export const Select = (props: MUTSelectType) => {
                 
                 {renderContent()}
 
-                <Root
-                    tag={"ul"}
-                    tabIndex={-1}
-                    onClick={onSelectItem}
-                    role="listbox"
-                    data-m-u-t-id={id}
-                    data-m-u-t-searchable={searchable}
-                    data-m-u-t-search-text={searchText}
-                    className={`${mutClass("border-radius")} ${mutClass("dropdown-content")} ${mutClass("user-select-none")} ${isOpen ? "open" : "close"}`}>
-                    {props.children}
-                </Root>
+                <div className={`${mutClass("full-width")} ${mutClass("dropdown-content-wrapper")}`}>
+                    <Root
+                        tag={"ul"}
+                        tabIndex={-1}
+                        onClick={onSelectItem}
+                        role="listbox"
+                        data-m-u-t-id={id}
+                        data-m-u-t-searchable={searchable}
+                        data-m-u-t-search-text={searchText}
+                        className={`${mutClass("full-width")} ${mutClass("dropdown-content")} ${mutClass("border-radius")} ${mutClass("user-select-none")} ${isOpen ? "" : mutClass("hidden")}`}>
+                        {props.children}
+                    </Root>
+                </div>
 
                 <select 
                     {...props}

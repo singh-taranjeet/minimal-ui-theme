@@ -7,8 +7,7 @@ import {Root} from '../../styleEngine/components/Root';
 import { primary__color, secondary__color, white__color } from '../../utils/constants';
 import { ButtonParamType } from './interface';
 
-const BUTTON_CLASS_NAME_INIT = `${mutClass("button")} ${mutClass("text-dec-none")} ${mutClass("border-none")}
-${mutClass("border-radius")} ${mutClass("inline-align-center")} ${mutClass("cursor-pointer")} ${mutClass("user-select-none")}`;
+const BUTTON_CLASS_NAME_INIT = `${mutClass("button")} ${mutClass("text-dec-none")} ${mutClass("border-none")} ${mutClass("pos-relative")} ${mutClass("m-0")} ${mutClass("outline-none")} ${mutClass("border-radius")} ${mutClass("inline-align-center")} ${mutClass("cursor-pointer")} ${mutClass("user-select-none")}`.trim();
 
 export function Button(props: ButtonParamType){
 

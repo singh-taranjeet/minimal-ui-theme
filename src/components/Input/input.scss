@@ -5,11 +5,10 @@
 $border-radius: constants.constants(border_radius);
 
 .mut-input-wrapper {
-    position: relative;
     .mut-label {
         visibility: hidden;
         font-size: 0.75em;
-        position: absolute;
+        // position: absolute;
         padding: 0 functions.rem(5);
         left: functions.rem(10);
         width: fit-content;
@@ -17,11 +16,11 @@ $border-radius: constants.constants(border_radius);
     }
     .mut-input {
         font: inherit;
-        outline: 0;
+        // outline: 0;
         height: 1.4375em;
         box-sizing: content-box;
-        margin: 0;
-        border: 0;
+        // margin: 0;
+        // border: 0;
         background: transparent;
     }
     &.outlined {
@@ -46,7 +45,7 @@ $border-radius: constants.constants(border_radius);
             visibility:visible;
         }
         .mut-input {
-            outline: 0;
+            // outline: 0;
         }
         
     }
