@@ -71,8 +71,6 @@ const App = () => {
 
           <TextField color={"#e91e63"} variant={VariantType.filled} label="filled textfield" legend="filled textfield"></TextField>
 
-          <input className="input" type="text" placeholder="Normal input" />
-
         </div>
 
       </div>

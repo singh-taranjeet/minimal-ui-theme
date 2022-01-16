@@ -205,7 +205,7 @@ export function useOutsideClickHandler(ref: React.RefObject<any>, handler: () =>
   }, [ref]);
 }
 
-export function getDOMElement(id: string, query?: string) {
+export function getDOMElement(id: string, query?: string): Element | undefined {
   if(document && window) {
     const div = document.querySelectorAll(`${query ? `[${query}]` : `[data-m-u-t-id='${id}']`}`);
     if(div && div.length) {
