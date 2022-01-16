@@ -6,10 +6,59 @@
     opacity: 0 !important;
 }
 
-.mut-padding {
-    padding: functions.rem(16) functions.rem(14);
+.mut-user-select-none {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
+.mut-text-dec-none {
+    text-decoration: none;
+}
+
+.mut-font-size {
+    font-size: 1rem;
+}
+
+.mut-full-width {
+    width: 100%;
+}
+
+// Position------------------------------------------------------
+.mut-pos-relative {
+    position: relative;
+}
+
+.mut-pos-absolute {
+    position: absolute;
+}
+
+// Border and outline------------------------------------------------------
+.mut-border-none {
+    border: none;
+}
+
+.mut-outline-none {
+    outline: none;
+}
+
+.mut-border-radius {
+    border-radius: const.constants(border_radius);
+}
+
+// Cursor------------------------------------------------------
+.mut-cursor-pointer {
+    * {cursor: pointer;}
+}
+
+.mut-cursor-text {
+    * {cursor: text;}
+}
+
+//Alignment------------------------------------------------------
 .mut-center {
     display: flex;
     flex-direction: column;
@@ -20,55 +69,26 @@
     display: flex;
 }
 
-// Justify Space between
 .mut-justify-sb {
     display: flex;
     justify-content: space-between;
-}
-
-.mut-user-select-none {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.mut-border-radius {
-    border-radius: const.constants(border_radius);
-}
-
-.mut-cursor-pointer {
-    * {
-        cursor: pointer;
-    }
-}
-
-.mut-cursor-text {
-    * {
-        cursor: text;
-    }
-}
-
-.mut-text-dec-none {
-    text-decoration: none;
-}
-
-.mut-border-none {
-    border: none;
-}
-
-.mut-outline-none {
-    outline: none;
-}
-
-.mut-font-size {
-    font-size: 1rem;
 }
 
 .mut-inline-align-center {
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
+}
+
+// Margin Padding
+.mut-p-0 {
+    padding: 0;
+}
+
+.mut-m-0 {
+    margin: 0;
+}
+
+.mut-padding {
+    padding: functions.rem(16) functions.rem(14);
 }

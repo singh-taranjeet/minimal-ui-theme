@@ -22,8 +22,8 @@ export const Input = (props: InputParamType) => {
     type="text"
   } = props;
 
-  const InitialClassname = `${mutClass("input")} ${mutClass("inline-align-center")}`;
-  const InitialWrapperClassName = `${mutClass("input-wrapper")}`;
+  const InitialClassname = `${mutClass("input")} ${mutClass("inline-align-center")} ${mutClass("outline-none")} ${mutClass("border-none")} ${mutClass('m-0')}`;
+  const InitialWrapperClassName = `${mutClass("input-wrapper")} ${mutClass("pos-relative")}`;
 
   const [style, setStyles] = useState<any>({});
   const [elementState, setElementState] = useState<ElementState>({hover: false, focus: false});
@@ -218,7 +218,7 @@ export const Input = (props: InputParamType) => {
       className={`${wrapperClassName} ${variant} ${mutClass("justify-sb")} ${(hasValue || elementState.focus) ? mutClass("show-lable") : ""}`}>
         <Root 
           tag={'label'} 
-          className={mutClass("label")}
+          className={`${mutClass("label")} ${mutClass("pos-absolute")}`}
           htmlFor={id} 
           styles={{color: __color}}
           >

@@ -25,20 +25,16 @@
     min-height: functions.rem(24);
   }
 
-  .mut-dropdown-content {
+  .mut-dropdown-content-wrapper {
     position: absolute;
-    background: colors.color(white);
     z-index: 2;
-    &.close {
-      display: none;
+    padding: 0 functions.rem(2);
+    .mut-dropdown-content {
+      background: colors.color(white);
+      box-shadow: constants.constants(box_shadow);
+      list-style: none;
+      margin: 0;
+      padding: 0 functions.rem(5);;
     }
-    &.open {
-      display: block;
-    }
-    width: 100%;
-    box-shadow: constants.constants(box_shadow);
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 }

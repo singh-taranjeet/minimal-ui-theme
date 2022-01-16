@@ -123,7 +123,15 @@ export const Select = (props: MUTSelectType) => {
 
     function navigateListOptions(downwards = true) {
 
-        const div: any = getDOMElement(id);
+        const div: Element | undefined = getDOMElement(id);
+
+        const children: any = [];
+
+        for(let i=0; i<div?.children?.length ; i++) {
+            if(isHidden(div, i) === "false") {
+                children.push(div?.children[i]);
+            }
+        }
 
         const children: any = [];
 
@@ -141,7 +149,7 @@ export const Select = (props: MUTSelectType) => {
             }
         }
         else {
-            for(let i = (children?.length -1); i >= 0 ; i--) {
+            for(let i = (children?.length - 1); i >= 0 ; i--) {
                 focusOnElement(i);
             }
         }
@@ -168,16 +176,12 @@ export const Select = (props: MUTSelectType) => {
                 }
                 else if(currentElement === aId) {
                     // upwards
-                    if(!downwards) {
-                        if(i > 0) {
-                            foundElement = i - 1;
-                        }
+                    if(!downwards && i > 0) {
+                        foundElement = i - 1;
                     }
                     // downwards
-                    else {
-                        if((i + 1) < children?.length) {
-                            foundElement = i + 1;
-                        }
+                    else if((i + 1) < children?.length) {
+                        foundElement = i + 1;
                     }    
                 }
             }
@@ -192,7 +196,6 @@ export const Select = (props: MUTSelectType) => {
 
         // If the element is hidden don't focus on it
         function isHidden(div: any, i: number) {
-            // data-m-u-t-hidden
             return  div?.children[i]?.getAttribute('data-m-u-t-hidden');
         }
     }
@@ -278,17 +281,19 @@ export const Select = (props: MUTSelectType) => {
                 
                 {renderContent()}
 
-                <Root
-                    tag={"ul"}
-                    tabIndex={-1}
-                    onClick={onSelectItem}
-                    role="listbox"
-                    data-m-u-t-id={id}
-                    data-m-u-t-searchable={searchable}
-                    data-m-u-t-search-text={searchText}
-                    className={`${mutClass("border-radius")} ${mutClass("dropdown-content")} ${mutClass("user-select-none")} ${isOpen ? "open" : "close"}`}>
-                    {props.children}
-                </Root>
+                <div className={`${mutClass("full-width")} ${mutClass("dropdown-content-wrapper")}`}>
+                    <Root
+                        tag={"ul"}
+                        tabIndex={-1}
+                        onClick={onSelectItem}
+                        role="listbox"
+                        data-m-u-t-id={id}
+                        data-m-u-t-searchable={searchable}
+                        data-m-u-t-search-text={searchText}
+                        className={`${mutClass("full-width")} ${mutClass("dropdown-content")} ${mutClass("border-radius")} ${mutClass("user-select-none")} ${isOpen ? "" : mutClass("hidden")}`}>
+                        {props.children}
+                    </Root>
+                </div>
 
                 <select 
                     {...props}
