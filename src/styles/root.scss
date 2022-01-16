@@ -49,6 +49,10 @@
     border-radius: const.constants(border_radius);
 }
 
+.mut-border-radius-50 {
+    border-radius: 50%;
+}
+
 // Cursor------------------------------------------------------
 .mut-cursor-pointer {
     * {cursor: pointer;}
@@ -61,7 +65,7 @@
 //Alignment------------------------------------------------------
 .mut-center {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 

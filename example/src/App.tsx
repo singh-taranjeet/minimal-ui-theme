@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-import { Select, ListItem, VariantType, TextField, Button, Box } from '@minimal_ui/theme';
+import { Select, ListItem, VariantType, TextField, Button, Box, Checkbox } from '@minimal_ui/theme';
 
 const App = () => {
   return (
@@ -86,6 +86,13 @@ const App = () => {
 
         </div>
 
+      </div>
+
+      <div className="m-20">
+        <h1>Checkbox</h1>
+        <div className="flex-sb">
+          <Checkbox />
+        </div>
       </div>
   </div>
   );

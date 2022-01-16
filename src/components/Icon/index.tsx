@@ -5,17 +5,11 @@ import './icon.scss';
 
 export const Icon = (props: IconType) => {
 
-    const {alt="icon", className="", src = "", position = "end", onClick} = props;
+    const {className="", onClick} = props;
 
     return (
-        <div 
-            onClick={onClick}
-            className={`${mutClass("icon")} ${className} ${mutClass("center")}`.trim()}>
-            {
-                src && position 
-                ? <img src={src} alt={alt}></img>
-                : <div className={mutClass("arrow")}></div>
-            }
+        <div onClick={onClick} className={`${className} ${mutClass("icon")} ${mutClass("center")} ${mutClass("border-radius-50")}`.trim()}>
+            <i className={`${mutClass("i")}`.trim()}></i>
         </div>
     );
 }

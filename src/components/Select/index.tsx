@@ -31,7 +31,7 @@ export const Select = (props: MUTSelectType) => {
 
     const wrapperRef = useRef(null);
 
-    useOutsideClickHandler(wrapperRef, closeDropdown.bind(this));
+    useOutsideClickHandler(wrapperRef, closeDropdown);
 
     function onSelectItem() {
 
@@ -133,14 +133,6 @@ export const Select = (props: MUTSelectType) => {
             }
         }
 
-        const children: any = [];
-
-        for(let i = (div?.children?.length -1); i >= 0 ; i--) {
-            if(isHidden(div, i) === "false") {
-                children.push(div?.children[i]);
-            }
-        }
-
         let foundElement = -1;
 
         if(downwards) {
@@ -236,10 +228,10 @@ export const Select = (props: MUTSelectType) => {
     useEffect(() => {
 
         // Custom event to select the list item
-        document.addEventListener(`list-item-clicked`, onSelectItem.bind(this));
+        document.addEventListener(`list-item-clicked`, onSelectItem);
 
         return () => {
-            document.removeEventListener(`list-item-clicked`, onSelectItem.bind(this));
+            document.removeEventListener(`list-item-clicked`, onSelectItem);
         }
     }, [id]);
 
@@ -264,8 +256,7 @@ export const Select = (props: MUTSelectType) => {
                 data-m-u-t-text-field-id={id}
                 icon={{
                     onClick: onClickIcon,
-                    position: "end",
-                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
+                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")} ${mutClass("arrow")}`
                 }}
                 onChange={onSearchChange}
                 className={`${mutClass("cursor-pointer")}`}
@@ -297,6 +288,7 @@ export const Select = (props: MUTSelectType) => {
 
                 <select 
                     {...props}
+                    aria-hidden={true}
                     className={`${mutClass("hidden-select")} ${mutClass("hidden")}`} 
                     tabIndex={-1} id={`select-${id}`}>
                     {props.children}
