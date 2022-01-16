@@ -15,5 +15,6 @@ export interface CoreComponentParamType {
 
 export interface IconType {
     className?: string,
-    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void,
+    styles?: object
 }

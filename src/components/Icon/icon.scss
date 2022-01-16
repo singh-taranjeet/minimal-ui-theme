@@ -16,15 +16,21 @@
         }
     }
     &.mut-checkbox-icon {
+        width: fun.rem(20);
+        height: fun.rem(20);
         .mut-i {
             display: inline-block;
             transform: rotate(45deg);
             height: fun.rem(10);
             width: fun.rem(5);
-            border-bottom: fun.rem(2) solid green;
-            border-right: fun.rem(2) solid green;
+            border-bottom: fun.rem(2) solid color.color(white);
+            border-right: fun.rem(2) solid color.color(white);
+            margin-top: fun.rem(-3);
         }
       }
+    &.mut-icon-hidden {
+        visibility: hidden;
+    }
     &.mut-rot-180 {
         transform: rotate(180deg);
         -webkit-transform: rotate(180deg);

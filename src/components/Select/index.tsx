@@ -256,7 +256,7 @@ export const Select = (props: MUTSelectType) => {
                 data-m-u-t-text-field-id={id}
                 icon={{
                     onClick: onClickIcon,
-                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")} ${mutClass("arrow")}`
+                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")} ${mutClass("arrow")} ${mutClass("border-radius-50")}`
                 }}
                 onChange={onSearchChange}
                 className={`${mutClass("cursor-pointer")}`}

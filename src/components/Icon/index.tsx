@@ -1,15 +1,19 @@
 import React from 'react';
+import { Root } from '../../styleEngine/components/Root';
 import { IconType } from '../../utils/interface';
 import { mutClass } from '../../utils/methods';
 import './icon.scss';
 
 export const Icon = (props: IconType) => {
 
-    const {className="", onClick} = props;
+    const {className="", onClick, styles={}} = props;
 
     return (
-        <div onClick={onClick} className={`${className} ${mutClass("icon")} ${mutClass("center")} ${mutClass("border-radius-50")}`.trim()}>
-            <i className={`${mutClass("i")}`.trim()}></i>
-        </div>
+        <Root 
+            styles={styles}
+            onClick={onClick} 
+            className={`${className} ${mutClass("icon")} ${mutClass("center")}`.trim()}>
+            <i className={`${mutClass("i")}`.trim()} />
+        </Root>
     );
 }

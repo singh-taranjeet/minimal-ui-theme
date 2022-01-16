@@ -2,9 +2,5 @@
 @use "../../styles/functions.scss" as fun;
 @use "../../styles/colors.scss" as color;
 .mut-checkbox {
-    
-    &:hover {
-        // background-color: color.color(hover);;
-
-    }
+    padding: fun.rem(10);
 }
