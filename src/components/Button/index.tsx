@@ -3,7 +3,7 @@ import  './button.scss';
 import {Ripple} from '@minimal_ui/react-ripple';
 import {ColorType, VariantType} from "../../utils/interface";
 import {getConstant, getId, lightenDarkenColor, mutClass} from '../../utils/methods';
-import {Root} from '../../styleEngine/components/Root';
+import {Root} from '@minimal_ui/style-engine';
 import { primary__color, secondary__color, white__color } from '../../utils/constants';
 import { ButtonParamType } from './interface';
 

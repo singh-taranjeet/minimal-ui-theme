@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
-import { Root } from '../../styleEngine/components/Root';
+import { Root } from '@minimal_ui/style-engine';
 import { light_gray__color, primary__color, secondary__color } from '../../utils/constants';
 import { ColorType, VariantType } from '../../utils/interface';
 import { getConstant, getDOMElement, getId, lightenDarkenColor, mutClass } from '../../utils/methods';
