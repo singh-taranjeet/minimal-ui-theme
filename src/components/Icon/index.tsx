@@ -1,21 +1,19 @@
 import React from 'react';
+import { Root } from '@minimal_ui/style-engine';
 import { IconType } from '../../utils/interface';
 import { mutClass } from '../../utils/methods';
 import './icon.scss';
 
 export const Icon = (props: IconType) => {
 
-    const {alt="icon", className="", src = "", position = "end", onClick} = props;
+    const {className="", onClick, styles={}} = props;
 
     return (
-        <div 
-            onClick={onClick}
-            className={`${mutClass("icon")} ${className} ${mutClass("center")}`.trim()}>
-            {
-                src && position 
-                ? <img src={src} alt={alt}></img>
-                : <div className={mutClass("arrow")}></div>
-            }
-        </div>
+        <Root 
+            styles={styles}
+            onClick={onClick} 
+            className={`${className} ${mutClass("icon")} ${mutClass("center")}`.trim()}>
+            <i className={`${mutClass("i")}`.trim()} />
+        </Root>
     );
 }

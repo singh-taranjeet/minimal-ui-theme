@@ -31,7 +31,7 @@ export const Select = (props: MUTSelectType) => {
 
     const wrapperRef = useRef(null);
 
-    useOutsideClickHandler(wrapperRef, closeDropdown.bind(this));
+    useOutsideClickHandler(wrapperRef, closeDropdown);
 
     function onSelectItem() {
 
@@ -228,10 +228,10 @@ export const Select = (props: MUTSelectType) => {
     useEffect(() => {
 
         // Custom event to select the list item
-        document.addEventListener(`list-item-clicked`, onSelectItem.bind(this));
+        document.addEventListener(`list-item-clicked`, onSelectItem);
 
         return () => {
-            document.removeEventListener(`list-item-clicked`, onSelectItem.bind(this));
+            document.removeEventListener(`list-item-clicked`, onSelectItem);
         }
     }, [id]);
 
@@ -256,8 +256,7 @@ export const Select = (props: MUTSelectType) => {
                 data-m-u-t-text-field-id={id}
                 icon={{
                     onClick: onClickIcon,
-                    position: "end",
-                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")}`
+                    className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")} ${mutClass("arrow")} ${mutClass("border-radius-50")}`
                 }}
                 onChange={onSearchChange}
                 className={`${mutClass("cursor-pointer")}`}
@@ -289,6 +288,7 @@ export const Select = (props: MUTSelectType) => {
 
                 <select 
                     {...props}
+                    aria-hidden={true}
                     className={`${mutClass("hidden-select")} ${mutClass("hidden")}`} 
                     tabIndex={-1} id={`select-${id}`}>
                     {props.children}

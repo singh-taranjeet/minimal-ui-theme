@@ -20,3 +20,5 @@ createStyleSheet({
         ":root": rootStyleConstants
     }
 })
+// Checkbox
+export * from './Checkbox';
