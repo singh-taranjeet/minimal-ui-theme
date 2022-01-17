@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Root } from '../../styleEngine/components/Root';
+import { Root } from '@minimal_ui/style-engine';
 import { CoreComponentParamType, VariantType } from '../../utils/interface';
 import { getDOMElement, getId, mutClass, useOutsideClickHandler } from '../../utils/methods';
 import { FieldSet } from '../Fieldset';

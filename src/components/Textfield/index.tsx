@@ -1,5 +1,5 @@
 import React from 'react';
-import { Root } from '../../styleEngine/components/Root';
+import { Root } from '@minimal_ui/style-engine';
 import { mutClass } from '../../utils/methods';
 import { FieldSet } from '../Fieldset';
 import { Input } from '../Input';

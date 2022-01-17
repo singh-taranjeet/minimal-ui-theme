@@ -1,3 +1,5 @@
+import '../styles/root.scss';
+
 export * from './Button';
 
 // Textfield
