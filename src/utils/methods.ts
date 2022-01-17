@@ -170,12 +170,6 @@ function strToHsl(str: string) {
 
 function hslToHex(b: any,c: any ,d: any){d/=100;const e=c*Math.min(d,1-d)/100,a=(a: any)=>{const c=(a+b/30)%12,f=d-e*Math.max(Math.min(c-3,9-c,1),-1);return Math.round(255*f).toString(16).padStart(2,"0")};return`#${a(0)}${a(8)}${a(4)}`}
 
-export function isObject(checkVariable: any) {
-  return typeof checkVariable === 'object' &&
-    !Array.isArray(checkVariable) &&
-    checkVariable !== null
-}
-
 export function getConstant(constant: string, getValue=true) {
 
   if(getValue) {
