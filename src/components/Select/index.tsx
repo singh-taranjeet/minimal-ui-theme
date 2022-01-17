@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Root } from '../../styleEngine/components/Root';
+import { Root } from '@minimal_ui/style-engine';
 import { CoreComponentParamType, VariantType } from '../../utils/interface';
 import { getDOMElement, getId, mutClass, useOutsideClickHandler } from '../../utils/methods';
 import { FieldSet } from '../Fieldset';
@@ -128,14 +128,6 @@ export const Select = (props: MUTSelectType) => {
         const children: any = [];
 
         for(let i=0; i<div?.children?.length ; i++) {
-            if(isHidden(div, i) === "false") {
-                children.push(div?.children[i]);
-            }
-        }
-
-        const children: any = [];
-
-        for(let i = (div?.children?.length -1); i >= 0 ; i--) {
             if(isHidden(div, i) === "false") {
                 children.push(div?.children[i]);
             }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Root } from '../../../styleEngine/components/Root';
+import { Root } from '@minimal_ui/style-engine';
 import { getDOMElement, getId, mutClass } from '../../../utils/methods';
 import { ListItemType } from './interface';
 import './listitem.scss';
