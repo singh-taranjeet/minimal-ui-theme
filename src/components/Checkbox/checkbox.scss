@@ -1,0 +1,6 @@
+@use "../../styles/constants.scss" as constants;
+@use "../../styles/functions.scss" as fun;
+@use "../../styles/colors.scss" as color;
+.mut-checkbox {
+    padding: fun.rem(10);
+}

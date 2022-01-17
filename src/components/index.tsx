@@ -12,3 +12,6 @@ export * from './Select/ListItem';
 
 // Box
 export * from './Box';
+
+// Checkbox
+export * from './Checkbox';

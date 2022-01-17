@@ -14,9 +14,7 @@ export interface CoreComponentParamType {
 }
 
 export interface IconType {
-    position: "start" | "end",
-    src?: string,
-    alt?: string,
     className?: string,
-    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void,
+    styles?: object
 }

@@ -1,24 +1,44 @@
 @use "../../styles/functions.scss" as fun;
+@use "../../styles/colors.scss" as color;
 .mut-icon {
-    max-width: fun.rem(30);
-    .mut-arrow {
-        width: 0;
-        height: 0;
-        border-left: fun.rem(5) solid transparent;
-        border-right: fun.rem(5) solid transparent;
-        border-top: fun.rem(5) solid #555;
+    width: fun.rem(30);
+    height: fun.rem(30);
+    &:hover {
+        background-color: color.color(hover);
     }
-    &.mut-rot-180 {
-        .mut-arrow {
-            transform: rotate(180deg);
-            -webkit-transform: rotate(180deg);
+    &.mut-arrow {
+        .mut-i {
+            width: 0;
+            height: 0;
+            border-left: fun.rem(5) solid transparent;
+            border-right: fun.rem(5) solid transparent;
+            border-top: fun.rem(5) solid #555;
         }
     }
-
-    &.mut-select-icon {
-        border-radius: 50%;
-        padding: fun.rem(11);
+    &.mut-checkbox-icon {
+        width: fun.rem(20);
+        height: fun.rem(20);
+        .mut-i {
+            display: inline-block;
+            transform: rotate(45deg);
+            height: fun.rem(10);
+            width: fun.rem(5);
+            border-bottom: fun.rem(2) solid color.color(white);
+            border-right: fun.rem(2) solid color.color(white);
+            margin-top: fun.rem(-3);
+        }
+      }
+    &.mut-icon-hidden {
+        visibility: hidden;
+    }
+    &.mut-rot-180 {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+    
+    .mut-select-icon {
         cursor: pointer;
+        padding: fun.rem(11);
     }
     
     
