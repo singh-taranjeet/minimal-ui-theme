@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Root } from "../../styleEngine/components/Root";
+import { Root } from "@minimal_ui/style-engine";
 import { getConstant, lightenDarkenColor, mutClass } from '../../utils/methods';
 import './checkbox.scss';
 import { Icon } from '../Icon';
