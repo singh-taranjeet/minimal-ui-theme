@@ -58,7 +58,7 @@ export const Checkbox = (props: CheckboxParamType) => {
     }
 
     return (
-        <Ripple borderRadius="50%">
+        <Ripple borderRadius="50%" centeredRipple>
             <Root styles={styles.checkbox} className={`${mutClass("checkbox")} ${mutClass("border-radius-50")} ${mutClass("center")}`}>
                 <input {...props} value="" tabIndex={-1} aria-hidden={true} className={`${mutClass("hidden")}`} type="checkbox" />
                 <Root className={`${mutClass("border-radius")} ${mutClass("cursor-pointer")}`} styles={styles.icon}>

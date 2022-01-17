@@ -16,7 +16,7 @@ const App = () => {
             <ListItem value={6} label={"Six"}>Six</ListItem>
           </Select>
 
-          <Select searchable={true}>
+          <Select searchable>
             <ListItem value={4} label={"Four"}>Four</ListItem>
             <ListItem value={5} label={"Five"}>Five</ListItem>
             <ListItem value={6} label={"Six"}>Six</ListItem>
