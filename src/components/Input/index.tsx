@@ -234,10 +234,6 @@ export const Input = (props: InputParamType) => {
           data-m-u-t-id={id}
           placeholder={elementState.focus ? props.placeholder : props.label}
           className={`${InitialClassname} ${mutClass("padding")}`.trim()}
-          // unassign other props
-          variant={undefined} 
-          color={undefined} 
-          icon={undefined}
           tag={"input"}
           />
         {

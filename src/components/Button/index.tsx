@@ -79,8 +79,6 @@ export function Button(props: ButtonParamType){
                 {...props}
                 tag={props.href ? "a" : "button"} 
                 className={`${BUTTON_CLASS_NAME_INIT} ${mutClass(variant)}`.trim()}
-                variant={undefined} 
-                color={undefined}
                 styles={style}
                 data-m-u-t-id={id}
                 >
