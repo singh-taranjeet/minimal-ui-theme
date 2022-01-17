@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Root } from "@minimal_ui/style-engine";
-import { getConstant, lightenDarkenColor, mutClass } from '../../utils/methods';
+import { getConstant, getId, lightenDarkenColor, mutClass } from '../../utils/methods';
 import './checkbox.scss';
 import { Icon } from '../Icon';
 import { CheckboxParamType } from './interface';
@@ -10,8 +10,10 @@ import { Ripple } from '@minimal_ui/react-ripple';
 
 export const Checkbox = (props: CheckboxParamType) => {
 
-    const {color = ColorType.primary, value="f"} = props;
+    const {color = ColorType.primary} = props;
     const [__color, set__Color] = useState<string>("");
+    const [id] = useState(getId());
+    const [isChecked, setIsChecked] = useState<boolean>(false);
 
     const [styles, setStyles] = useState<any>({
         checkbox: {},
@@ -28,7 +30,32 @@ export const Checkbox = (props: CheckboxParamType) => {
         })();
         set__Color(colour);
         configureStyles(colour);
-    }, [color]);
+    }, [color, isChecked]);
+
+    // set default check
+    useEffect(() => {
+        const input: any = document?.getElementById(id);
+        setIsChecked(!!input.checked);
+        document.getElementById(id).addEventListener('click', onClick);
+        return () => {
+            document.getElementById(id).removeEventListener('click', onClick);
+        }
+    }, [props.checked]);
+
+    function onClick(e: any) {  
+        setIsChecked(e.target.checked);
+    }
+
+    function onClickWrapper() {
+        const input = document.getElementById(id);
+        input.click();
+    }
+
+    function onChange(e: any) {
+        if(props.onChange) {
+            props.onChange(e);
+        }
+    }
 
     function configureStyles(__color: string) {
 
@@ -51,8 +78,8 @@ export const Checkbox = (props: CheckboxParamType) => {
             ...styles,
             checkbox: styles,
             icon: {
-                "border": ((value !== 0) && !value) ? `1px solid ${__color}` : 0,
-                "background-color": ((value !== 0) && !value) ? getConstant(white__color) : __color
+                "border": (!isChecked) ? `1px solid ${__color}` : 0,
+                "background-color": !isChecked ? getConstant(white__color) : __color
             }
         });
     }
@@ -60,9 +87,9 @@ export const Checkbox = (props: CheckboxParamType) => {
     return (
         <Ripple borderRadius="50%" centeredRipple>
             <Root styles={styles.checkbox} className={`${mutClass("checkbox")} ${mutClass("border-radius-50")} ${mutClass("center")}`}>
-                <input {...props} value="" tabIndex={-1} aria-hidden={true} className={`${mutClass("hidden")}`} type="checkbox" />
-                <Root className={`${mutClass("border-radius")} ${mutClass("cursor-pointer")}`} styles={styles.icon}>
-                    <Icon className={`${mutClass("checkbox-icon")} ${((value !== 0) && !value) ? mutClass("icon-hidden") : "" }`}></Icon>
+                <input id={id} {...props} onChange={onChange} checked={isChecked} tabIndex={-1} aria-hidden={true} className={`${mutClass("hidden")}`} type="checkbox" />
+                <Root onClick={onClickWrapper} className={`${mutClass("border-radius")} ${mutClass("cursor-pointer")}`} styles={styles.icon}>
+                    <Icon className={`${mutClass("checkbox-icon")} ${!isChecked ? mutClass("icon-hidden") : "" }`}></Icon>
                 </Root>
             </Root>
         </Ripple>

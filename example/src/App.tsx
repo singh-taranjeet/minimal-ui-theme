@@ -10,7 +10,7 @@ const App = () => {
       <div className="m-20">
         <h1>Select</h1>
         <div className="flex-sb">
-          <Select>
+          <Select value="Five">
             <ListItem value={4} label={"Four"}>Four</ListItem>
             <ListItem value={5} label={"Five"}>Five</ListItem>
             <ListItem value={6} label={"Six"}>Six</ListItem>

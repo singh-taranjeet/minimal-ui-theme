@@ -76,7 +76,7 @@ export const Select = (props: MUTSelectType) => {
                 const evt: any = document.createEvent("HTMLEvents");
                 evt.initEvent("change", false, true);
                 selectEle.dispatchEvent(evt);
-            }
+            }   
         }
 
     }
@@ -266,6 +266,12 @@ export const Select = (props: MUTSelectType) => {
         );
     }
 
+    function onSelectChange(e: any) {
+        if(props.onChange) {
+            props.onChange(e);
+        }
+    }
+
     return (
         <div className={`${mutClass("select-field")} ${mutClass("cursor-pointer")}`} ref={wrapperRef} onClick={openDropdown}>
             <FieldSet>
@@ -290,7 +296,9 @@ export const Select = (props: MUTSelectType) => {
                     {...props}
                     aria-hidden={true}
                     className={`${mutClass("hidden-select")} ${mutClass("hidden")}`} 
-                    tabIndex={-1} id={`select-${id}`}>
+                    tabIndex={-1} 
+                    onChange={onSelectChange}
+                    id={`select-${id}`}>
                     {props.children}
                 </select>
 
