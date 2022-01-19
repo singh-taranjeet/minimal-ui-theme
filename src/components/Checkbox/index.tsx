@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Root } from "@minimal_ui/style-engine";
-import { getConstant, getId, lightenDarkenColor, mutClass } from '../../utils/methods';
+import { getConstant, getDOMElement, getId, lightenDarkenColor, mutClass } from '../../utils/methods';
 import './checkbox.scss';
 import { Icon } from '../Icon';
 import { CheckboxParamType } from './interface';
@@ -34,11 +34,11 @@ export const Checkbox = (props: CheckboxParamType) => {
 
     // set default check
     useEffect(() => {
-        const input: any = document?.getElementById(id);
+        const input: any = getDOMElement(id);
         setIsChecked(!!input.checked);
-        document.getElementById(id).addEventListener('click', onClick);
+        getDOMElement(id)?.addEventListener('click', onClick);
         return () => {
-            document.getElementById(id).removeEventListener('click', onClick);
+            getDOMElement(id).removeEventListener('click', onClick);
         }
     }, [props.checked]);
 
@@ -47,8 +47,8 @@ export const Checkbox = (props: CheckboxParamType) => {
     }
 
     function onClickWrapper() {
-        const input = document.getElementById(id);
-        input.click();
+        const input: any = getDOMElement(id);
+        input?.click();
     }
 
     function onChange(e: any) {
@@ -86,8 +86,9 @@ export const Checkbox = (props: CheckboxParamType) => {
 
     return (
         <Ripple borderRadius="50%" centeredRipple>
-            <Root styles={styles.checkbox} className={`${mutClass("checkbox")} ${mutClass("border-radius-50")} ${mutClass("center")}`}>
-                <input id={id} {...props} onChange={onChange} checked={isChecked} tabIndex={-1} aria-hidden={true} className={`${mutClass("hidden")}`} type="checkbox" />
+            <Root styles={styles.checkbox} className={`${mutClass("checkbox")} ${mutClass("round-padding")} ${mutClass("border-radius-50")} ${mutClass("center")} ${mutClass("user-select-none")}`}>
+                <input data-m-u-t-id={id} {...props} onChange={onChange} checked={isChecked} tabIndex={-1} aria-hidden={true} className={`${mutClass("hidden")}`} type="checkbox" />
+                <label htmlFor={props.name} className={`${mutClass("hidden")}`}>{props.name}</label>
                 <Root onClick={onClickWrapper} className={`${mutClass("border-radius")} ${mutClass("cursor-pointer")}`} styles={styles.icon}>
                     <Icon className={`${mutClass("checkbox-icon")} ${!isChecked ? mutClass("icon-hidden") : "" }`}></Icon>
                 </Root>

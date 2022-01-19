@@ -259,7 +259,7 @@ export const Select = (props: MUTSelectType) => {
                     className:`${isOpen ? mutClass("rot-180") : ""} ${mutClass("cursor-pointer")} ${mutClass("select-icon")} ${mutClass("arrow")} ${mutClass("border-radius-50")}`
                 }}
                 onChange={onSearchChange}
-                className={`${mutClass("cursor-pointer")}`}
+                className={`${mutClass("cursor-pointer")} ${mutClass("user-select-none")}`}
                 onKeyDown={onkeyDown}
                 >
             </TextField>
@@ -273,7 +273,9 @@ export const Select = (props: MUTSelectType) => {
     }
 
     return (
-        <div className={`${mutClass("select-field")} ${mutClass("cursor-pointer")}`} ref={wrapperRef} onClick={openDropdown}>
+        <div 
+            className={`${mutClass("select")} ${mutClass("cursor-pointer")} ${mutClass("user-select-none")} ${mutClass("pos-relative")}`} 
+            ref={wrapperRef} onClick={openDropdown}>
             <FieldSet>
                 
                 {renderContent()}
