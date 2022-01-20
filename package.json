@@ -21,8 +21,9 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
-    "update:ripple": "npm update @minimal_ui/react-ripple --save",
-    "update:engine": "npm update @minimal_ui/style-engine --save"
+    "update": "npm run update:ripple && npm run update:engine",
+    "update:ripple": "npm remove @minimal_ui/react-ripple --save && npm i @minimal_ui/react-ripple --save",
+    "update:engine": "npm remove @minimal_ui/style-engine --save && npm i @minimal_ui/style-engine --save"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -71,7 +72,7 @@
     "dist"
   ],
   "dependencies": {
-    "@minimal_ui/react-ripple": "^1.0.15",
+    "@minimal_ui/react-ripple": "^1.0.19",
     "@minimal_ui/style-engine": "^1.0.4"
   }
 }
